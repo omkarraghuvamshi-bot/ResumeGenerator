@@ -1,0 +1,128 @@
+:root {
+  --ink: #1f1b2e;
+  --soft: #6b6580;
+  --line: #e6e0f2;
+  --violet: #7c3aed; --pink: #ec4899; --orange: #f97316; --amber: #f59e0b;
+  --teal: #0d9488; --blue: #2563eb; --green: #16a34a;
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --body: "Inter", system-ui, sans-serif;
+  --ats: Arial, Helvetica, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: var(--body); color: var(--ink); line-height: 1.5; min-height: 100vh;
+  /* Layer 1: tint (changes with the resume type) so the title stays readable.
+     Layer 2: your own photo, if you add public/backgrounds/desk.jpg.
+     Layer 3: the desk-and-resume picture that ships with the project. */
+  --tint: rgba(10, 20, 50, .46);
+  --photo: url("/backgrounds/desk.jpg");
+  --art: url("/backgrounds/desk.svg");
+  background-color: #0f172a;
+  background-image: linear-gradient(var(--tint), var(--tint)), var(--photo), var(--art);
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+body[data-type="student"] { --tint: rgba(6, 52, 62, .42); }
+body[data-type="professional"] { --tint: rgba(10, 20, 55, .48); }
+body[data-type="experienced"] { --tint: rgba(38, 26, 8, .5); }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+.page { max-width: 1300px; margin: 0 auto; padding: 44px 24px 70px; }
+.head { max-width: 680px; margin-bottom: 30px; color: #fff; }
+.head h1 { font-family: var(--display); font-size: clamp(2.4rem, 5.4vw, 4rem); line-height: 1; margin: 0 0 12px; font-weight: 700; letter-spacing: -.02em; text-shadow: 0 4px 24px rgba(0,0,0,.25); }
+.head p { margin: 0 0 14px; font-size: 1.1rem; color: #ffe9f5; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge { font-size: .85rem; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.4); color: #fff; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 500px) minmax(0, 1fr); gap: 28px; align-items: start; }
+
+/* ---------- form: one continuous card, sections separated by colour ---------- */
+.panel { background: #fff; border-radius: 20px; padding: 6px 26px 0; box-shadow: 0 24px 60px rgba(5, 10, 30, .4); }
+.block { --c: var(--violet); padding: 6px 0 8px 16px; margin: 20px 0 26px; border-left: 5px solid var(--c); }
+.block:nth-child(1) { --c: var(--violet); }
+.block:nth-child(2) { --c: var(--pink); }
+.block:nth-child(3) { --c: var(--orange); }
+.block:nth-child(4) { --c: var(--teal); }
+.block:nth-child(5) { --c: var(--blue); }
+.block:nth-child(6) { --c: var(--green); }
+.block:nth-child(7) { --c: var(--amber); }
+.block:nth-child(8) { --c: var(--violet); }
+.actions { position: sticky; bottom: 0; background: linear-gradient(#fff0, #fff 22%); padding: 22px 0 16px; z-index: 2; }
+.actions .status { color: var(--soft); margin: 8px 2px 0; }
+.actions .status.warn { color: #b45309; }
+.actions .status.err { color: #b91c1c; background: #fee2e2; }
+.block h2 { font-family: var(--display); font-size: 1.45rem; margin: 0 0 2px; color: var(--c); }
+.hint { color: var(--soft); font-size: .92rem; margin: 0 0 14px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.field label { font-size: .85rem; font-weight: 600; }
+.field input, .field textarea { font: inherit; color: var(--ink); background: #faf8ff; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; }
+.field input:focus, .field textarea:focus { border-color: var(--c); background: #fff; outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 22%, transparent); }
+.field textarea { resize: vertical; min-height: 84px; }
+.field ::placeholder { color: #a9a3bd; }
+.item { border: 1.5px dashed var(--line); border-radius: 14px; padding: 14px 14px 4px; margin-bottom: 14px; background: #fcfbff; }
+.item-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-weight: 700; color: var(--c); }
+.block > .btn { margin-bottom: 10px; }
+
+.btn { font: 600 .95rem var(--body); border-radius: 12px; padding: 10px 16px; border: 1.5px solid var(--line); background: #fff; color: var(--ink); cursor: pointer; }
+.btn:hover { border-color: var(--c, var(--violet)); color: var(--c, var(--violet)); }
+.btn.small { padding: 4px 10px; font-size: .8rem; }
+.btn.primary { color: #fff; border: 0; background: linear-gradient(90deg, var(--violet), var(--pink) 55%, var(--orange)); box-shadow: 0 8px 22px rgba(236, 72, 153, .45); }
+.btn.primary:hover { color: #fff; filter: brightness(1.07); }
+.btn:disabled { opacity: .6; cursor: wait; }
+.btn.wide { width: 100%; padding: 16px; font-size: 1.1rem; }
+.status { font-size: .92rem; margin: 2px 2px 0; min-height: 1.4em; color: #fff; font-weight: 500; }
+.status.warn { color: #fde68a; }
+.status.err { color: #fecaca; background: rgba(127, 29, 29, .55); padding: 6px 10px; border-radius: 8px; }
+
+/* ---------- result side ---------- */
+.preview-col { position: sticky; top: 16px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.empty { border: 2px dashed rgba(255,255,255,.55); border-radius: 20px; padding: 56px 30px; color: #fff; background: rgba(255,255,255,.12); backdrop-filter: blur(6px); }
+.empty h2 { font-family: var(--display); font-size: 1.7rem; margin: 0 0 6px; }
+.empty p { margin: 0; color: #ffe9f5; }
+.tip { margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: #fff7d6; border-left: 6px solid var(--amber); font-size: .92rem; }
+.ats-note { margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: #dcfce7; border-left: 6px solid var(--green); font-size: .9rem; }
+
+/* ---------- the resume itself: plain on purpose (ATS-friendly) ---------- */
+.paper { background: #fff; color: #000; font-family: var(--ats); font-size: 10.5pt; line-height: 1.4; border-radius: 6px; padding: 40px 44px; min-height: 640px; box-shadow: 0 30px 70px rgba(30, 5, 60, .45); }
+.paper h1 { font-family: var(--ats); font-size: 20pt; font-weight: 700; margin: 0; text-align: center; }
+.paper .role { text-align: center; font-size: 11pt; margin: 2px 0 4px; }
+.paper .contact { text-align: center; font-size: 9.5pt; padding-bottom: 8px; }
+.paper h3 { font-family: var(--ats); font-size: 10.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; margin: 14px 0 6px; padding-bottom: 2px; border-bottom: 1px solid #000; }
+.paper p { margin: 0 0 6px; }
+.paper ul { margin: 3px 0 8px; padding-left: 18px; }
+.paper li { margin-bottom: 2px; }
+.row { display: flex; justify-content: space-between; gap: 12px; font-weight: 700; }
+.row .when { font-weight: 400; white-space: nowrap; }
+.sub { font-style: italic; }
+.placeholder { color: #999; font-weight: 400; }
+
+@media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .preview-col { position: static; } .paper { padding: 26px 20px; } }
+@media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+@media print {
+  body { background: #fff; }
+  .head, .panel, .toolbar, .tip, .ats-note, .empty { display: none !important; }
+  .page, .layout { display: block; padding: 0; margin: 0; max-width: none; }
+  .preview-col { position: static; }
+  .paper { box-shadow: none; border-radius: 0; padding: 0; min-height: 0; }
+  @page { margin: 16mm; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* ---------- resume type picker ---------- */
+.types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+.type-card { display: flex; flex-direction: column; gap: 4px; text-align: left; font: inherit; color: var(--ink); background: #faf8ff; border: 2px solid var(--line); border-radius: 14px; padding: 12px; cursor: pointer; }
+.type-card strong { font-family: var(--display); font-size: 1.02rem; }
+.type-card span { font-size: .8rem; color: var(--soft); line-height: 1.3; }
+.type-card:hover { border-color: var(--c); }
+.type-card.on { border-color: var(--c); background: color-mix(in srgb, var(--c) 12%, #fff); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 25%, transparent); }
+@media (max-width: 520px) { .types { grid-template-columns: 1fr; } }
+
+.btn.dl { background: #fff; }
+.paper a { color: #0b4fa8; text-decoration: underline; }
+.paper .contact { white-space: pre-wrap; }
+.paper .entry { margin-bottom: 4px; }
+@media print { .actions { display: none !important; } }
